@@ -2,7 +2,7 @@ package models;
 
 import java.util.Objects;
 
-public class Contacto {
+public class Contact {
 
     private int id;
     private String name;
@@ -11,7 +11,7 @@ public class Contacto {
     private String telephone;
 
 
-    public Contacto(String name, String surname, String email, String telephone){
+    public Contact(String name, String surname, String email, String telephone){
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -63,8 +63,8 @@ public class Contacto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Contacto contacto = (Contacto) o;
-        return Objects.equals(name, contacto.name);
+        Contact contact = (Contact) o;
+        return Objects.equals(name, contact.name);
     }
 
     @Override
