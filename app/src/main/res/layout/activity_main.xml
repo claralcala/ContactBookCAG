@@ -19,11 +19,10 @@
 
 
         <ListView
+            android:id="@+id/lvContacts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:clickable="true">
 
 
         </ListView>
