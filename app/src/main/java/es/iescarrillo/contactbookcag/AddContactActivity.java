@@ -25,7 +25,8 @@ public class AddContactActivity extends AppCompatActivity {
         Button btnSave = findViewById(R.id.btnSave);
 
         btnSave.setOnClickListener(v -> {
-            Contact contact = new Contact(etName.getText().toString(), etSurname.getText().toString(), etMail.getText().toString(), etPhone.getText().toString());
+            int id = contactList.size()+1;
+            Contact contact = new Contact(id, etName.getText().toString(), etSurname.getText().toString(), etMail.getText().toString(), etPhone.getText().toString());
 
             contactList.add(contact);
 
