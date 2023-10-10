@@ -13,6 +13,9 @@ import android.widget.EditText;
 import es.iescarrillo.contactbookcag.data.Database;
 import es.iescarrillo.contactbookcag.models.Contact;
 
+/**
+ * Clase para añadir contactos
+ */
 public class AddContactActivity extends AppCompatActivity {
 
     @Override
@@ -20,14 +23,18 @@ public class AddContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
 
+        //Inicializamos los componentes que usaremos
         EditText etName = findViewById(R.id.etName);
         EditText etSurname = findViewById(R.id.etSurname);
         EditText etMail = findViewById(R.id.etMail);
         EditText etPhone = findViewById(R.id.etPhone);
         Button btnSave = findViewById(R.id.btnSave);
 
+        //Si pulsamos Guardar, creamos un contacto y lo añadimos
+        //Asimismo, al acabar volvemos a la actividad principal para no quedarnos ahí
         btnSave.setOnClickListener(v -> {
-            int id = Database.getId();
+            //Cuidado con esto: sumamos +1 al número más grande que nos devuelva el método getID para tener el siguiente
+            int id = Database.getId() + 1;
             Contact contact = new Contact(id, etName.getText().toString(), etSurname.getText().toString(), etMail.getText().toString(), etPhone.getText().toString());
 
             contactList.add(contact);

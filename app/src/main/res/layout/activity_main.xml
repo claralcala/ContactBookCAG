@@ -36,7 +36,7 @@
         android:layout_marginRight="40dp"
         android:textSize="20dp"
         android:text="Agregar contacto"
-        android:backgroundTint="#5F14AD"
+        android:backgroundTint="#200FAB"
         app:layout_constraintBottom_toBottomOf="@id/linearLayout" />
 
 

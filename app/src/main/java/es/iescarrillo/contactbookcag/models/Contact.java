@@ -3,18 +3,22 @@ package es.iescarrillo.contactbookcag.models;
 import java.util.Comparator;
 import java.util.Objects;
 
+/**
+ * Clase objeto Contact
+ */
 public class Contact implements Comparable<Contact> {
-
+    //Declaración de atributos
     private int id;
     private String name;
     private String surname;
     private String email;
     private String telephone;
 
-
+    //Constructor vacío
     public Contact() {
 
     }
+    //Constructor con todos los parámetros
     public Contact(int id, String name, String surname, String email, String telephone){
         this.id=id;
         this.name = name;
@@ -23,7 +27,7 @@ public class Contact implements Comparable<Contact> {
         this.telephone = telephone;
     }
 
-
+    //Getters y setters
     public int getId() {
         return id;
     }
@@ -65,6 +69,7 @@ public class Contact implements Comparable<Contact> {
     }
 
 
+    //Equals por el número de telf
     public boolean equals(Contact c) {
         return this.getTelephone().equals(c.getTelephone());
 
@@ -75,6 +80,11 @@ public class Contact implements Comparable<Contact> {
         return Objects.hash(id, name, surname, email, telephone);
     }
 
+    /**
+     * Método compareto para ordenar por nombre y apellidos
+     * @param c the object to be compared.
+     * @return
+     */
     @Override
     public int compareTo(Contact c) {
         int result = 0;

@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.SortedSet;
+
+import es.iescarrillo.contactbookcag.data.Database;
+import es.iescarrillo.contactbookcag.models.Contact;
+
 public class ContactDetails extends AppCompatActivity {
 
     @Override
@@ -14,10 +19,12 @@ public class ContactDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_details);
 
-        //Recuperar intent
+        SortedSet<Contact> contacts = Database.contactList;
+
+        //Recuperar intent con los datos que nos traemos de la página principal
         Intent viewMainIntent = getIntent();
 
-        //Recuperamos el nombre
+        //Recuperamos el nombre, apellido, email y telf
         TextView tvName = (TextView) findViewById(R.id.tvName);
         tvName.setText(viewMainIntent.getStringExtra("name"));
 
@@ -33,6 +40,7 @@ public class ContactDetails extends AppCompatActivity {
 
         Button btnEdit = findViewById(R.id.btnEdit);
 
+        //Cuando pulsamos el botón editar, nos llevamos toda la info a la siguiente pantalla
         btnEdit.setOnClickListener(v -> {
             //Llamar a la First Activity
             Intent viewEditIntent = new Intent(this, EditContactActivity.class);
@@ -50,7 +58,32 @@ public class ContactDetails extends AppCompatActivity {
 
         });
 
+        //Para el botón eliminar, buscamos en la lista un contacto que coincida con los datos que tenemos
+        //Si encontramos ese contacto, lo borramos
+        Button btnDelete = findViewById(R.id.btnDelete);
 
+
+        btnDelete.setOnClickListener(v -> {
+            //Recordemos que no podemos borrar Personas que se generan con el método populateDatabase
+
+            for (Contact con: contacts){
+                if(con.getName().equals(tvName.getText().toString()) && con.getSurname().equals(tvSurname.getText().toString()) && con.getEmail().equals(tvMail.getText().toString()) && con.getTelephone().equals(tvPhone.getText().toString())){
+                    contacts.remove(con);
+                    break;
+                }
+            }
+
+            //Luego volvemos a la vista principal
+            Intent viewFirstIntent = new Intent(this, MainActivity.class);
+            //Iniciar la siguiente activity
+            startActivity(viewFirstIntent);
+
+
+
+        });
+
+
+        //Si pulsamos el botón de vuelta, volvemos a la vista principal
         Button btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> {
             //Llamar a la First Activity

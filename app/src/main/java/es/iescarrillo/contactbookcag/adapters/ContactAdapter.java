@@ -13,9 +13,13 @@ import java.util.stream.Collectors;
 import es.iescarrillo.contactbookcag.R;
 import es.iescarrillo.contactbookcag.models.Contact;
 
+/**
+ * Clase ContactAdapter que usaremos para volcar el contenido de la lista a la ListView
+ */
 public class ContactAdapter extends ArrayAdapter<Contact> {
 
     public ContactAdapter (Context context, SortedSet<Contact> contactList){
+        //Como nosotros usamos SortedSet, casteamos para no tener problemas
         super(context, 0, contactList.stream().collect(Collectors.toList()));
     }
 
@@ -30,6 +34,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         TextView tvNameL = convertView.findViewById(R.id.tvNameList);
 
+        //En nuestro caso en la pantalla de inicio mostraremos el nombre y el apellido
         tvNameL.setText(contact.getName() +" " + contact.getSurname());
 
         return convertView;
