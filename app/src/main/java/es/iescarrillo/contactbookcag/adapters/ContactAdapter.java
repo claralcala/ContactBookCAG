@@ -1,4 +1,4 @@
-package adapters;
+package es.iescarrillo.contactbookcag.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,16 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.List;
 import java.util.SortedSet;
 
 import es.iescarrillo.contactbookcag.R;
-import models.Contact;
+import es.iescarrillo.contactbookcag.models.Contact;
 
 public class ContactAdapter extends ArrayAdapter<Contact> {
 
     public ContactAdapter (Context context, SortedSet<Contact> contactList){
-            super(context, 0, contactList);
+        super(context, 0, contactList);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package models;
+package es.iescarrillo.contactbookcag.models;
 
 import java.util.Objects;
 
@@ -65,11 +65,11 @@ public class Contact {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return Objects.equals(name, contact.name);
+        return id == contact.id && name.equals(contact.name) && surname.equals(contact.surname) && Objects.equals(email, contact.email) && Objects.equals(telephone, contact.telephone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name, surname, email, telephone);
     }
 }

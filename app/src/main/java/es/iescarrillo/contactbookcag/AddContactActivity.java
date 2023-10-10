@@ -1,6 +1,7 @@
 package es.iescarrillo.contactbookcag;
 
-import static data.Database.contactList;
+
+import static es.iescarrillo.contactbookcag.data.Database.contactList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +10,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import models.Contact;
+import es.iescarrillo.contactbookcag.models.Contact;
 
 public class AddContactActivity extends AppCompatActivity {
 

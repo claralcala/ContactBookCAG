@@ -1,4 +1,4 @@
-package data;
+package es.iescarrillo.contactbookcag.data;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,7 +7,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.SortedSet;
-import models.Contact;
+
+import es.iescarrillo.contactbookcag.models.Contact;
+
 public class Database {
 
     public static SortedSet<Contact> contactList = new SortedSet<Contact>() {
