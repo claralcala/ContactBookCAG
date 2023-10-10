@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import es.iescarrillo.contactbookcag.data.Database;
 import es.iescarrillo.contactbookcag.models.Contact;
 
 public class AddContactActivity extends AppCompatActivity {
@@ -26,11 +27,13 @@ public class AddContactActivity extends AppCompatActivity {
         Button btnSave = findViewById(R.id.btnSave);
 
         btnSave.setOnClickListener(v -> {
-            int id = contactList.size()+1;
+            int id = Database.getId();
             Contact contact = new Contact(id, etName.getText().toString(), etSurname.getText().toString(), etMail.getText().toString(), etPhone.getText().toString());
 
             contactList.add(contact);
-
+            Intent viewMainAc= new Intent(this, MainActivity.class);
+            //Iniciar la siguiente activity
+            startActivity(viewMainAc);
 
         });
 

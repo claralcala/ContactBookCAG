@@ -1,8 +1,9 @@
 package es.iescarrillo.contactbookcag.models;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Contact {
+public class Contact implements Comparable<Contact> {
 
     private int id;
     private String name;
@@ -11,6 +12,9 @@ public class Contact {
     private String telephone;
 
 
+    public Contact() {
+
+    }
     public Contact(int id, String name, String surname, String email, String telephone){
         this.id=id;
         this.name = name;
@@ -60,16 +64,28 @@ public class Contact {
         this.telephone = telephone;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Contact contact = (Contact) o;
-        return id == contact.id && name.equals(contact.name) && surname.equals(contact.surname) && Objects.equals(email, contact.email) && Objects.equals(telephone, contact.telephone);
+
+    public boolean equals(Contact c) {
+        return this.getTelephone().equals(c.getTelephone());
+
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, name, surname, email, telephone);
     }
+
+    @Override
+    public int compareTo(Contact c) {
+        int result = 0;
+
+        if (this.getName().compareTo(c.getName())== 0){
+            result = this.getSurname().compareTo(c.getSurname());
+        }else {
+            result = this.getName().compareTo(c.getName());
+        }
+        return result;
+    }
+
+
 }

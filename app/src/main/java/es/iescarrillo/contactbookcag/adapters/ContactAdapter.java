@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.SortedSet;
+import java.util.stream.Collectors;
 
 import es.iescarrillo.contactbookcag.R;
 import es.iescarrillo.contactbookcag.models.Contact;
@@ -15,7 +16,7 @@ import es.iescarrillo.contactbookcag.models.Contact;
 public class ContactAdapter extends ArrayAdapter<Contact> {
 
     public ContactAdapter (Context context, SortedSet<Contact> contactList){
-        super(context, 0, contactList);
+        super(context, 0, contactList.stream().collect(Collectors.toList()));
     }
 
     @Override
@@ -29,7 +30,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         TextView tvNameL = convertView.findViewById(R.id.tvNameList);
 
-        tvNameL.setText(contact.getName());
+        tvNameL.setText(contact.getName() +" " + contact.getSurname());
 
         return convertView;
 

@@ -11,7 +11,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.SortedSet;
+
 import es.iescarrillo.contactbookcag.adapters.ContactAdapter;
+
+import es.iescarrillo.contactbookcag.data.Database;
 import es.iescarrillo.contactbookcag.models.Contact;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,11 +28,17 @@ public class MainActivity extends AppCompatActivity {
         ListView lvContacts = findViewById(R.id.lvContacts);
         Button btnAddContact = findViewById(R.id.btnAddContact);
 
+        SortedSet<Contact> contacts = Database.contactList;
+        Database.populateDatabase();
+
         //¿No necesito crear la lista aquí?
         //Métodos de la lista
-        ContactAdapter adapter = new ContactAdapter((Context) this, contactList);
+        ContactAdapter adapter = new ContactAdapter((Context) this, contacts);
+
 
         lvContacts.setAdapter(adapter);
+
+
 
         lvContacts.setOnItemClickListener((parent, view, position, id) ->{
 
