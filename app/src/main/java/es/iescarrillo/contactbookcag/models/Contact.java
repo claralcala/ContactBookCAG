@@ -87,7 +87,8 @@ public class Contact implements Comparable<Contact> {
      */
     @Override
     public int compareTo(Contact c) {
-        //Nosotros almacenamos el int para comparar nombre y apellidos en dos variables.
+        //Nosotros almacenamos la comparación de nombres y apellidos en dos variables
+        //Es lo mismo, luego solo tenemos que poner si esa variable es igual a 0 como antes
         int compareName = this.getName().compareTo(c.getName());
         if (compareName == 0) {
             int compareSurname = this.getSurname().compareTo(c.getSurname());
