@@ -82,19 +82,21 @@ public class Contact implements Comparable<Contact> {
 
     /**
      * Método compareto para ordenar por nombre y apellidos
-     * @param c the object to be compared.
+     * @param c el objeto para comparar
      * @return
      */
     @Override
     public int compareTo(Contact c) {
-        int result = 0;
-
-        if (this.getName().compareTo(c.getName())== 0){
-            result = this.getSurname().compareTo(c.getSurname());
-        }else {
-            result = this.getName().compareTo(c.getName());
+        int compareName = this.getName().compareTo(c.getName());
+        if (compareName == 0) {
+            int compareSurname = this.getSurname().compareTo(c.getSurname());
+            if (compareSurname == 0) {
+                //si el nombre y el apellido son iguales, comparamos por num de telefono
+                return this.getTelephone().compareTo(c.getTelephone());
+            }
+            return compareSurname;
         }
-        return result;
+        return compareName;
     }
 
 
