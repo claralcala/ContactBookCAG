@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
             Contact contact = (Contact) parent.getItemAtPosition(position);
             Intent intent = new Intent(this, ContactDetails.class);
+            intent.putExtra("id", contact.getId());
             intent.putExtra("name", contact.getName());
             intent.putExtra("surname", contact.getSurname());
             intent.putExtra("email", contact.getEmail());
