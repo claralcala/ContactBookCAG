@@ -42,12 +42,12 @@ public class ContactDataSource {
 
         ContentValues values = new ContentValues();
 
-        if (name == null)
+        if (name.isEmpty())
             values.put("name", "Nombre desconocido");
         else
             values.put("name", name);
 
-        if (surname == null)
+        if (surname.isEmpty())
             values.put("surname", "Apellidos desconocidos");
         else
             values.put("surname", surname);

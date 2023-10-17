@@ -1,7 +1,7 @@
 package es.iescarrillo.contactbookcag;
 
 
-import static es.iescarrillo.contactbookcag.data.Database.contactList;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,19 +10,20 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import es.iescarrillo.contactbookcag.data.Database;
-import es.iescarrillo.contactbookcag.models.Contact;
+import es.iescarrillo.contactbookcag.datasources.ContactDataSource;
 
 /**
  * Clase para añadir contactos
  */
 public class AddContactActivity extends AppCompatActivity {
-
+    private ContactDataSource contactDataSource;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
 
+
+        contactDataSource = new ContactDataSource(this);
         //Inicializamos los componentes que usaremos
         EditText etName = findViewById(R.id.etName);
         EditText etSurname = findViewById(R.id.etSurname);
@@ -34,10 +35,10 @@ public class AddContactActivity extends AppCompatActivity {
         //Asimismo, al acabar volvemos a la actividad principal para no quedarnos ahí
         btnSave.setOnClickListener(v -> {
             //Cuidado con esto: sumamos +1 al número más grande que nos devuelva el método getID para tener el siguiente
-            int id = Database.getId() + 1;
-            Contact contact = new Contact(id, etName.getText().toString(), etSurname.getText().toString(), etMail.getText().toString(), etPhone.getText().toString());
 
-            contactList.add(contact);
+            contactDataSource.insertContact(etName.getText().toString(), etSurname.getText().toString(), etMail.getText().toString(),etPhone.getText().toString());
+
+
             Intent viewMainAc= new Intent(this, MainActivity.class);
             //Iniciar la siguiente activity
             startActivity(viewMainAc);
@@ -54,4 +55,6 @@ public class AddContactActivity extends AppCompatActivity {
 
         });
     }
+
+
 }

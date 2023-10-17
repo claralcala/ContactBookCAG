@@ -1,7 +1,7 @@
 package es.iescarrillo.contactbookcag;
 
 
-import static es.iescarrillo.contactbookcag.data.Database.contactList;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +15,7 @@ import java.util.SortedSet;
 
 import es.iescarrillo.contactbookcag.adapters.ContactAdapter;
 
-import es.iescarrillo.contactbookcag.data.Database;
+import es.iescarrillo.contactbookcag.datasources.ContactDataSource;
 import es.iescarrillo.contactbookcag.models.Contact;
 
 /**
@@ -23,7 +23,8 @@ import es.iescarrillo.contactbookcag.models.Contact;
  *
  */
 public class MainActivity extends AppCompatActivity {
-
+    private ContactDataSource contactDataSource;
+    ContactAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
         ListView lvContacts = findViewById(R.id.lvContacts);
         Button btnAddContact = findViewById(R.id.btnAddContact);
 
-        SortedSet<Contact> contacts = Database.contactList;
-        //Llenamos la lista con elementos
-        Database.populateDatabase();
+        contactDataSource = new ContactDataSource(this);
+        contactDataSource.getAllContacts();
+
+        contactDataSource.openWritableDatabase();
+        contactDataSource.close();
 
 
-        ContactAdapter adapter = new ContactAdapter((Context) this, contacts);
+        SortedSet<Contact> contacts = contactDataSource.getAllContacts();
+
+        adapter = new ContactAdapter((Context) this, contacts);
 
 
         lvContacts.setAdapter(adapter);
